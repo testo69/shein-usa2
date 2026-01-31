@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHEIN Gift Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        nav {
+            background-color: #fff;
+            padding: 12px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        nav h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .hero-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        .main-image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+
+        .main-image:hover {
+            transform: scale(1.02);
+        }
+
+        .gift-card-info {
+            max-width: 300px;
+            text-align: left;
+        }
+
+        .gift-card-info h2 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        #selectedAmount {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff2e63;
+            margin: 4px 0;
+        }
+
+        .design-section, .amount-section, .form-section {
+            margin: 10px 0;
+            background-color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        h3 {
+            font-size esteem: 0px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .design-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 6px;
+            max-width: 320px;
+            margin: 8px auto 0;
+        }
+
+        .design-option {
+            width: 100%;
+            cursor: pointer;
+            border: 1px solid transparent;
+            padding: 3px;
+            border-radius: 4px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .design-option img {
+            width: 100%;
+            max-width: 60px;
+            border-radius: 4px;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+        }
+
+        .design-option.selected, .design-option:hover {
+            border-color: #ff2e63;
+            transform: translateY(-1px);
+        }
+
+        .amount-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .amount-option {
+            padding: 6px 12px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            color: #1a1a1a;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .amount-option.selected, .amount-option:hover {
+            background-color: #ff2e63;
+            color: #fff;
+            border-color: #ff2e63;
+            transform: translateY(-1px);
+        }
+
+        .form-section {
+            padding-bottom: 15px;
+        }
+
+        .input-group {
+            margin: 10px 0;
+        }
+
+        .input-group label {
+            font-size: 11px;
+            font-weight: 500;
+            color: #1a1a1a;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            background-color: #fff;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            outline: none;
+            border-color: #ff2e63;
+        }
+
+        .input-group input:disabled {
+            background-color: #f8f9fa;
+            cursor: not-allowed;
+        }
+
+        .input-group textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 10px 0;
+        }
+
+        .terms {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .terms label {
+            font-size: 11px;
+            color: #555;
+        }
+
+        .terms a {
+            color: #ff2e63;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .terms a:hover {
+            color: #e02456;
+            text-decoration: underline;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            background-color: #ff2e63;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #e02456;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .footer-text {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 11px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .footer-text p {
+            margin-bottom: 5px;
+        }
+
+        .footer-text a {
+            color: #ff2e63;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-text a:hover {
+            color: #e02456;
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 800px;
+            }
+
+            .design-options {
+                grid-template-columns: repeat(auto-fit, minmax(55px, 1fr));
+                max-width: 300px;
+            }
+
+            .design-option img {
+                max-width: 55px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                max-width: 600px;
+            }
+
+            .design-options {
+                grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+                max-width: 250px;
+            }
+
+            .design-option img {
+                max-width: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            nav h1 {
+                font-size: 20px;
+            }
+
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 12px;
+                gap: 10px;
+            }
+
+            .main-image {
+                max-width: 100%;
+            }
+
+            .gift-card-info {
+                max-width: 100%;
+            }
+
+            .gift-card-info h2 {
+                font-size: 13px;
+            }
+
+            #selectedAmount {
+                font-size: 22px;
+            }
+
+            .design-options {
+                grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+                max-width: 200px;
+                gap: 5px;
+            }
+
+            .design-option img {
+                max-width: 45px;
+                border-radius: 3px;
+            }
+
+            .amount-option {
+                padding: 5px 10px;
+                font-size: 12px;
+                flex: 1 1 calc(50% - 5px);
+            }
+
+            .input-group input, .input-group textarea {
+                font-size: 12px;
+                padding: 5px;
+            }
+
+            button {
+                font-size: 12px;
+                padding: 7px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav h1 {
+                font-size: 18px;
+            }
+
+            .hero-section {
+                padding: 10px;
+            }
+
+            .main-image {
+                max-width: 100%;
+            }
+
+            #selectedAmount {
+                font-size: 20px;
+            }
+
+            .design-options {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 2fr));
+                max-width: 180px;
+                gap: 2px;
+            }
+
+            .design-option {
+                padding: 2px;
+            }
+
+            .design-option img {
+                max-width: 60px;
+                border-radius: 3px;
+            }
+
+            .amount-option {
+                flex: 1 1 100%;
+                padding: 5px;
+            }
+
+            .form-section, .design-section, .amount-section {
+                padding: 10px;
+            }
+
+            .input-group label {
+                font-size: 10px;
+            }
+
+            .terms label {
+                font-size: 10px;
+            }
+
+            .footer-text {
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .design-options {
+                grid-template-columns: repeat(auto-fit, minmax(55px, 1fr));
+                max-width: 190px;
+                gap: 3px;
+            }
+
+            .design-option img {
+                max-width: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>SHEIN Gift Card</h1>
+    </nav>
+    <div class="container">
+        <div class="hero-section">
+            <img src="1.jpg" alt="Gift Card" class="main-image" id="mainImage">
+            <div class="gift-card-info">
+                <h2>SHEIN E-Gift Card</h2>
+                <p id="selectedAmount">$80.00</p>
+            </div>
+        </div>
+        
+        <div class="design-section">
+            <h3>Choose Your Design</h3>
+            <div class="design-options" id="designOptions">
+                <img src="1.jpg" alt="Design 1" class="design-option selected" data-image="1.jpg">
+                <img src="2.jpg" alt="Design 2" class="design-option" data-image="2.jpg">
+                <img src="3.jpg" alt="Design 3" class="design-option" data-image="3.jpg">
+                <img src="4.jpg" alt="Design 4" class="design-option" data-image="4.jpg">
+                <img src="5.jpg" alt="Design 5" class="design-option" data-image="5.jpg">
+                <img src="6.jpg" alt="Design 6" class="design-option" data-image="6.jpg">
+                <img src="7.jpg" alt="Design 7" class="design-option" data-image="7.jpg">
+            </div>
+        </div>
+        
+        <div class="amount-section">
+            <h3>Select Amount</h3>
+            <div class="amount-options" id="amountOptions">
+                <div class="amount-option selected" data-amount="80">$80.00</div>
+                <div class="amount-option" data-amount="100">$100.00</div>
+                <div class="amount-option" data-amount="200">$200.00</div>
+                <div class="amount-option" data-amount="300">$300.00</div>
+                <div class="amount-option" data-amount="500">$500.00</div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <form method="POST" action="app.php" id="giftCardForm">
+                <input type="hidden" id="selectedDesign" name="selectedDesign" value="1.jpg">
+                <input type="hidden" id="selectedAmountInput" name="selectedAmount" value="80">
+                <div class="input-group">
+                    <label for="to">Recipient Email*</label>
+                    <input type="email" id="to" name="recipientEmail" required placeholder="Enter recipient's email">
+                </div>
+                <hr>
+                
+                <div class="input-group">
+                    <label for="from">From*</label>
+                    <input type="text" id="from" name="senderEmail" disabled value="us@shein.com">
+                </div>
+                <hr>
+                
+                <div class="input-group">
+                    <label for="message">Add a Message (Optional)</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Write a personal message..."></textarea>
+                </div>
+                <hr>
+                
+                <div class="terms">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
+                </div>
+                
+                <button type="submit">Proceed to Checkout</button>
+            </form>
+        </div>
+
+        <div class="footer-text">
+            <p>Give the gift of style with SHEIN!</p>
+            <p>SHEIN E-Gift Cards are the perfect way to share fashion with anyone, anytime. Enjoy savings on every purchase!</p>
+            <p><a href="#">Learn more about SHEIN E-Gift Cards</a></p>
+        </div>
+    </div>
+
+    <script>
+        const mainImage = document.getElementById('mainImage');
+        const designOptions = document.getElementById('designOptions');
+        const amountOptions = document.getElementById('amountOptions');
+        const selectedAmount = document.getElementById('selectedAmount');
+        const selectedDesignInput = document.getElementById('selectedDesign');
+        const selectedAmountInput = document.getElementById('selectedAmountInput');
+
+        designOptions.addEventListener('click', (e) => {
+            if (e.target.classList.contains('design-option')) {
+                document.querySelectorAll('.design-option').forEach(opt => opt.classList.remove('selected'));
+                e.target.classList.add('selected');
+                mainImage.src = e.target.dataset.image;
+                mainImage.alt = e.target.alt;
+                selectedDesignInput.value = e.target.dataset.image;
+            }
+        });
+
+        amountOptions.addEventListener('click', (e) => {
+            if (e.target.classList.contains('amount-option')) {
+                document.querySelectorAll('.amount-option').forEach(opt => opt.classList.remove('selected'));
+                e.target.classList.add('selected');
+                selectedAmount.textContent = `$${e.target.dataset.amount}.00`;
+                selectedAmountInput.value = e.target.dataset.amount;
+            }
+        });
+
+        document.getElementById('giftCardForm').addEventListener('submit', function(e) {
+            const toField = document.getElementById('to').value;
+            const termsChecked = document.getElementById('terms').checked;
+            if (!toField || !termsChecked) {
+                e.preventDefault();
+                alert('Please fill in the recipient email and agree to the terms.');
+            }
+        });
+    </script>
+</body>
+</html>
